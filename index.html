@@ -311,6 +311,8 @@
 							$(document).on('click', '#top_open_button', function(){
 								$(this).addClass('side-bar-item-active');
 								$('#big_bets_button').removeClass('side-bar-item-active');
+								$('#stats_button').removeClass('side-bar-item-active');
+
 								$('#big_bets_div').hide();
 								$('#stats_div').hide();
 								$('#top_open_div').show();
@@ -322,6 +324,8 @@
 							$(document).on('click', '#big_bets_button', function(){
 								$(this).addClass('side-bar-item-active');
 								$('#top_open_button').removeClass('side-bar-item-active');
+								$('#stats_button').removeClass('side-bar-item-active');
+
 								$('#top_open_div').hide();
 								$('#stats_div').hide();
 								$('#big_bets_div').show();
@@ -334,6 +338,8 @@
 							$(document).on('click', '#stats_button', function(){
 								$(this).addClass('side-bar-item-active');
 								$('#top_open_button').removeClass('side-bar-item-active');
+								$('#big_bets_button').removeClass('side-bar-item-active');
+								
 								$('#top_open_div').hide();
 								$('#big_bets_div').hide();
 								$('#stats_div').show();
