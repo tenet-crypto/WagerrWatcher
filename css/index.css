@@ -1,0 +1,276 @@
+/*add fonts*/
+@font-face {
+  font-family: bariol;
+  src: url(fonts/bariol_regular-webfont.woff2);
+}
+@font-face {
+  font-family: bariol;
+  src: url(fonts/bariol_bold-webfont.woff2);
+  font-weight: bold;
+}
+
+
+
+body{
+	margin: 0;
+	font-family: bariol;
+}
+
+
+
+.page-container{
+	min-height: 100vh;
+
+
+}
+.content-container{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+}
+
+
+/*header stuff*/
+.header-container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	min-height: 5rem;
+	background-color: #ab0000;
+	min-width: 49rem;
+}
+.header-logo-c{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 10rem;
+	margin-bottom: 1rem;
+}
+.header-logo-c > div{
+	height: 100%;
+	margin-left: 0.5rem;
+
+	
+}
+.header-logo{
+	width: 4rem;
+	height: 4rem;
+}
+.header-watcher{
+	font-size: 1.75rem;
+	font-weight: bolder;
+	color: white;
+}
+.header-options-c{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: white;
+	min-width: calc(100% - 10rem);
+}
+.header-options-list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	color: white;
+	font-size: 1.15rem;
+	font-weight: bold;
+	margin-left: 0.5rem;
+}
+.header-option{
+	margin: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+/*body stuff*/
+.body-container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	min-height: calc(100vh - 5rem);
+	
+	
+}
+.side-bar-container{
+	display: flex;
+	flex-direction: column;
+	min-width: 9rem;
+	background-image: url('../img/sidebar_back.png');
+	background-size: all;
+	color: white;
+
+
+}
+.side-bar{
+	display: flex;
+	flex-direction: column;
+}
+.side-bar-item{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2.5rem;
+	height: 4rem;
+	opacity: 0.5;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	font-weight: bold;
+	
+}
+.side-bar-item:hover{
+	opacity: 1;
+	cursor: pointer;
+	box-shadow: 0 0 5px lightgrey;
+}
+.side-bar-item-active{
+	opacity: 1;
+	box-shadow: 0 0 5px lightgrey;
+}
+
+.page-data-container{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	width: calc(100% - 9rem);
+	min-width: 40rem;
+}
+
+
+
+
+.top-open-container{
+	display: flex;
+	flex-direction: column;
+	min-width: 40rem;
+	width: 75%;
+	margin-top: 2.5rem;
+	border: 6px solid #b40101; 
+}
+.top-open-header{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.75rem;
+	font-weight: bold;
+	background-color: #b40101;
+	color: white;
+}
+.top-open-total{
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+
+}
+.open-total-header{
+	font-size: 1.25rem;
+	font-weight: bold;
+	background-color: #b40101;
+	color: white;
+	padding-left: 0.5rem;
+
+}
+.open-total-item{
+	display: flex;
+	flex-direction: row;
+
+	align-items: center;
+	border: 1px solid lightgrey;
+	font-weight: bold;
+	padding-left: 0.5rem;
+
+}
+.open-span{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding-right: 0.5rem;
+	width: 100%;
+
+}
+
+.top-open-list-container{
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+	display: table;
+}
+
+
+
+
+/*Stats*/
+.update-notice{
+	font-weight: bold;
+	font-size: 0.9rem;
+	margin-left: 1.5rem;
+}
+.stats-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	border: 2px solid;
+}
+.stats-options{
+	margin-top: 1rem;
+}
+.stats-chart{
+	margin-top: 2.5rem;
+	margin-bottom: 2rem;
+	width: 75%;
+}
+.stats-buttons{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 85%;
+}
+.stats-buttons > button{
+	width: 8rem;
+	font-weight: bolder;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+}
+.stats-buttons > button:hover{
+	background-color: #b40101;
+	border: #b40101;
+}
+.btn-check:checked+.btn-outline-primary {
+	background-color: #b40101;
+	border: #b40101;
+	color: white;
+}
+.btn-wgr:hover{
+	background-color: #b40101;
+	border-color: #b40101;
+	color: white;
+}
+.btn-wgr{
+	background-color: white;
+	border-color: #b40101;
+	color: #b40101;;
+}
+
+.stats-table{
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	border: 6px solid #b40101; 
+}
+
+.table-foot-bold{
+	font-weight: bold;
+}
