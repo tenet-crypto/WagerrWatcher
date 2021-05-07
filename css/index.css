@@ -274,3 +274,13 @@ body{
 .table-foot-bold{
 	font-weight: bold;
 }
+
+
+/*links*/
+.links_list{
+	margin-top: 2rem;
+}
+.link-item{
+	font-size: 1.1rem;
+	font-weight: bold;
+}
