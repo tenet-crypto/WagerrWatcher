@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wagerr Watcher</title>
+
+	<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.2/dist/chartjs-adapter-moment.min.js"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.0.0-beta.5/dist/chartjs-plugin-zoom.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<div class="page-container">
+		<div class="content-container">
+			<div class="header-container">
+				<div class="header-logo-c">
+					<div>
+						<img class="header-logo" src="img/wgrlogomodernICONallwhite.svg">
+					</div>
+					
+					<div class="header-watcher">Watcher</div>
+				</div>
+				<div class="header-options-c">
+					<div class="header-options-list">
+						<div class="header-option">WGR: $<span id="wgr_price"></span> USD</div>
+						<div class="header-option">Supply: <span id="wgr_supply"></span> WGR </div>
+						<div class="header-option">Market Cap: $<span id="wgr_mc"></span> USD</div>
+					</div>				
+				</div>
+				
+			</div>
+			<div class="body-container">
+				<div class="side-bar-container">
+					<div class="side-bar">
+						<div id="top_open_button" class="side-bar-item side-bar-item-active">Top Open Events</div>
+						<div id="big_bets_button" class="side-bar-item">Big Bets</div>
+						<div id="stats_button" class="side-bar-item">Betting Volume/Stats</div>
+						<div id="links_button" class="side-bar-item">Links</div>
+					</div>
+				</div>
+				<div class="page-data-container">
+
+					<!-- top open -->
+					<div id="top_open_div" class="top-open-container">
+						<div class="top-open-header">Top Open Events</div>
+						<div class="top-open-total">
+							<div class="open-total-header">Open Event Totals: </div>
+							<div class="open-total-item">
+								<div>Open Events: </div> 
+								<div class="open-span">
+									<span id="open_event">Loading...</span>
+								</div>
+							</div>
+							<div class="open-total-item">
+								<div>Bet (WGR): </div>
+								<div class="open-span">
+									<span id="open_bet_wgr">Loading...</span>
+								</div>
+							</div>
+							<div class="open-total-item">
+								<div>Bets (USD): </div>
+								<div class="open-span">
+									<span id="open_bet_usd">Loading...</span>
+								</div>
+							</div>
+						</div>
+						<div class="top-open-list-container">
+							<div class="open-total-header">Open Events</div>
+							<div>
+								<table class="table table-striped">
+									<thead>
+										<th>Rank</th>
+										<th>Event Id</th>
+										<th>League</th>
+										<th>Home</th>
+										<th>Away</th>
+										<th>Total bet WGR</th>
+										<th>Total bet USD</th>
+									</thead>
+									<tbody id="open_events_info">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<!-- Bigbets -->
+					<div id="big_bets_div" class="top-open-container">
+						<div class="top-open-header">Big Bets</div>
+						<div class="big-bets-limit">*Limit is 10,000 WGR per bet.  Actual is the combination of multiple 10,000 WGR bets where Event Id and Time are equal*</div>
+						<div class="top-open-total">
+							<div class="open-total-header">Bet Totals: </div>
+							<div class="open-total-item">
+								<div>Bets Placed:* </div> 
+								<div class="open-span">
+									<span id="big_bet_placed">Loading...</span>
+								</div>
+							</div>
+							<div class="open-total-item">
+								<div>Bet (WGR): </div>
+								<div class="open-span">
+									<span id="big_bet_wgr">Loading...</span>
+								</div>
+							</div>
+							<div class="open-total-item">
+								<div>Bets (USD): </div>
+								<div class="open-span">
+									<span id="big_bet_usd">Loading...</span>
+								</div>
+							</div>
+						</div>
+						<div class="top-open-list-container">
+							<div class="open-total-header">Big Bets</div>
+							<div>
+								<table class="table table-striped">
+									<thead>
+										<th>Rank</th>
+										<th>Event Id</th>
+										<th>Bet Type</th>
+										<th>Time</th>
+										<th>Total bet WGR</th>
+										<th>Total bet USD</th>
+									</thead>
+									<tbody id="big_bets_info">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<!-- Stats/charts -->
+					<div id="stats_div" class="stats-container">
+						<div class="stats-options">
+							<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							  <input type="radio" class="btn-check" name="btnradio" id="single" autocomplete="off" checked>
+							  <label class="btn btn-outline-primary btn-wgr" for="single">Single Bets</label>
+
+							  <input type="radio" class="btn-check" name="btnradio" id="parlay" autocomplete="off">
+							  <label class="btn btn-outline-primary btn-wgr" for="parlay">Parlay Bets</label>
+							</div>
+						</div>
+						<div class="stats-chart">
+							<canvas id="chart_single"></canvas>
+							<canvas id="chart_parlay"></canvas>
+						</div>
+						<div class="stats-buttons">
+							<button class="btn btn-primary" id="reset_button" >Reset zoom</button>
+							<button class="btn btn-primary" id="month_button" >Month</button>
+							<button class="btn btn-primary" id="week_button" >Week</button>
+							<button class="btn btn-primary" id="day_button" >Day</button>
+						</div>
+						<div id="stats_table_append" class="stats-table">
+							<div>
+								<div class="top-open-header">Bet Totals (Jan 1, 2021 - Current)</div>
+								<div class="update-notice">**Updated between 12AM-1AM CST (GMT-6) Daily**</div>
+							</div>
+							
+							<div class="top-open-total">
+								<div class="open-total-header">Bet Totals: </div>
+								<div class="open-total-item">
+									<div>Single Bets: </div> 
+									<div class="open-span">
+										<span id="single_placed">Loading...</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Parlay Bets: </div> 
+									<div class="open-span">
+										<span id="parlay_placed">Loading...</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Total Bets: </div> 
+									<div class="open-span">
+										<span id="total_placed">Loading...</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Total Bets (USD) <br> (Current WGR price): </div>
+									<div class="open-span">
+										<span id="total_usd">Loading...</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Total Supply Change: </div>
+									<div class="open-span">
+										<span id="supply_placed">Loading...</span>
+									</div>
+								</div>
+							</div>
+							<div id="single_bets_table_container" class="top-open-list-container">
+								<div class="open-total-header">Single Bet Totals (Daily)</div>
+								<div>
+									<table class="table table-striped">
+										<thead>
+											<th>No.</th>
+											<th>Date</th>
+											<th>Single Bet</th>
+											<th>Single Bet Payout</th>
+											<th>Single Bet Supply Change</th>
+										</thead>
+										<tbody id="single_bets_info">
+											
+										</tbody>
+										<tfoot>
+											<tr class="table-foot-bold">
+												<th colspan="2">Total</th>
+												<td id="table_total_single"></td>
+												<td id="table_total_single_payout"></td>
+												<td id="table_total_single_change"></td>
+											</tr>
+											
+										</tfoot>
+									</table>
+								</div>
+							</div>
+
+							<div id="parlay_bets_table_container" class="top-open-list-container">
+								<div class="open-total-header">Parlay Bet Totals (Daily)</div>
+								<div>
+									<table class="table table-striped">
+										<thead>
+											<th>No.</th>
+											<th>Date</th>
+											<th>Parlay Bet</th>
+											<th>Parlay Bet Payout</th>
+											<th>Parlay Bet Supply Change</th>
+										</thead>
+										<tbody id="parlay_bets_info">
+											
+										</tbody>
+										<tfoot>
+											<tr class="table-foot-bold">
+												<th colspan="2">Total</th>
+												<td id="table_total_parlay"></td>
+												<td id="table_total_parlay_payout"></td>
+												<td id="table_total_parlay_change"></td>
+											</tr>
+											
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Links -->
+					<div id="links_div" class="top-open-container">
+						<div class="top-open-header">Links</div>
+						<div class="links_list">
+							<ul>
+								<li class="link-item">Wagerr Sports Book: <a target="_blank" href="https://wagerr.com/sportsbook">https://wagerr.com/sportsbook</a></li>
+								<li class="link-item">Wagerr.com: <a target="_blank" href="https://wagerr.com/">https://wagerr.com/</a></li>
+								<li class="link-item">Wagerr Blockchain Explorer: <a target="_blank" href="https://explorer.wagerr.com/#/">https://explorer.wagerr.com/#/</a></li>
+							</ul>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
