@@ -290,3 +290,23 @@ body{
 	font-size: 1.1rem;
 	font-weight: bold;
 }
+.donate{
+	margin-top: 1rem;
+	width: 100%;
+
+}
+.donate-input{
+	width: 22rem;
+	padding: 0.375rem 0.5rem 0.375rem 0.5rem;
+	font-size: 1rem;
+
+}
+.donate-qr{
+	width: 15rem;
+	height: 15rem;
+}
+.btn{
+	vertical-align: initial;
+	border-radius: 0;
+	border: 2px solid transparent;
+}

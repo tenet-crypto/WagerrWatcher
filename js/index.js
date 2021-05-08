@@ -582,5 +582,25 @@ $(document).ready(function(){
 		$('#supply_placed').html(Number(total_changes).toLocaleString('en', {maximumFractionDigits: 0}) );
 	}
 
+	//donate button copy
+	function donate_copy(){
+			var copyText = document.getElementById("donate_input");
+			//select field
+			copyText.select();
+
+			//for mobile
+			copyText.setSelectionRange(0, 99999);
+
+			//copy text
+			document.execCommand('copy');
+
+			alert("Copied the text: " + copyText.value);
+	}
+
+	//donation button copy
+	$(document).on('click', '#donate_button', function(){
+		donate_copy();
+
+	});
 	
 });
