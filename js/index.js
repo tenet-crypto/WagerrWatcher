@@ -110,23 +110,23 @@ $(document).ready(function(){
 				var bets_action_combined = [];
 				$.each(bets_action, function(k,v){
 					var date = new Date(v.createdAt);
-					var index = combine_big_bets(date.getTime(), v.eventId);
+					var index = combine_big_bets(date.getTime(), v.eventId, v.betChoose);
 
 					if(index == -1){
-				
-						bets_action_combined.push(v);
+						var obj = {createdAt: v.createdAt, betValue: v.betValue, eventId: v.eventId, betChoose: v.betChoose };
+						bets_action_combined.push(obj);
 					}else{
 					
 						bets_action_combined[index].betValue += v.betValue;
 						
 					}		
 				});
-					//combine big bet shelper function
-					function combine_big_bets(date, event_id){
+					//combine big bets helper function
+					function combine_big_bets(date, event_id, bet_type){
 						var kk = -1;
 						$.each(bets_action_combined, function(k,v){
 							var date_array = new Date(v.createdAt);
-							if(date == date_array.getTime() && event_id == v.eventId){
+							if(date == date_array.getTime() && event_id == v.eventId && bet_type == v.betChoose){
 								//only want 1 match
 								if (kk == -1){
 									//set index for return
@@ -150,6 +150,7 @@ $(document).ready(function(){
 						return 0;
 					}
 				});
+
 
 				//Append big bets
 				$.each(bets_action_combined, function(k,v){
