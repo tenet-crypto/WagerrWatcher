@@ -39,7 +39,7 @@ body{
 	flex-wrap: wrap;
 	min-height: 5rem;
 	background-color: #ab0000;
-	min-width: 49rem;
+	min-width: 54rem;
 }
 .header-logo-c{
 	display: flex;
@@ -145,7 +145,7 @@ body{
 	flex-wrap: nowrap;
 	justify-content: center;
 	width: calc(100% - 9rem);
-	min-width: 40rem;
+	min-width: 45rem;
 }
 
 
@@ -230,7 +230,7 @@ body{
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	border: 2px solid;
+	
 }
 .stats-options{
 	margin-top: 1rem;
@@ -319,7 +319,7 @@ body{
 .ufc-table{
 	display: flex;
 	flex-direction: column;
-	min-width: 75%;
+	width: 85%;
 	border: 6px solid #b40101;
 	margin-top: 2rem;
 	background-color: white;
