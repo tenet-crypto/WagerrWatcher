@@ -14,6 +14,7 @@
 body{
 	margin: 0;
 	font-family: bariol;
+	background-color: #DEE2E6;
 }
 
 
@@ -157,6 +158,7 @@ body{
 	width: 75%;
 	margin-top: 2.5rem;
 	border: 6px solid #b40101; 
+	background-color: white;
 }
 .top-open-header{
 	display: flex;
@@ -275,6 +277,7 @@ body{
 	flex-direction: column;
 	width: 75%;
 	border: 6px solid #b40101; 
+	background-color: white;
 }
 
 .table-foot-bold{
@@ -310,3 +313,51 @@ body{
 	border-radius: 0;
 	border: 2px solid transparent;
 }
+
+
+/*UFC*/
+.ufc-table{
+	display: flex;
+	flex-direction: column;
+	min-width: 75%;
+	border: 6px solid #b40101;
+	margin-top: 2rem;
+	background-color: white;
+}
+.Ufc_table_confidence{
+	display: flex;
+	flex-direction: row;
+	width: 85%;
+	justify-content: space-evenly;
+	font-size: 0.85rem;
+	font-weight: bold;
+	margin: 1rem 0 1rem 0;
+}
+.Ufc_table_note{
+	font-size: 0.85rem;
+	font-weight: bold;
+}
+.table-pick{
+	font-weight: bold;
+	border: 2px solid black;
+	text-align: center;
+	background-color: lightgreen!important;
+	
+}
+.table_Very{
+	text-align: center;
+	font-weight: bold;
+	background-color: green!important;
+}
+.table_Confident{
+	text-align: center;
+	font-weight: bold;
+	background-color: orange!important;
+}
+.table_Not{
+	text-align: center;
+	font-weight: bold;
+	background-color: red!important;
+}
+
+

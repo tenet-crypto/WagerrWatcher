@@ -4,6 +4,7 @@ $(document).ready(function(){
 	$('#big_bets_div').hide();
 	$('#stats_div').hide();
 	$('#links_div').hide();
+	$('#picks_div').hide();
 
 	//hide buttons and charts
 	$('#reset_button').hide();
@@ -35,6 +36,7 @@ $(document).ready(function(){
 			//make table and charts
 			api_sheets('single', 'chart_single');
 			api_sheets('parlay', 'chart_parlay');
+			add_picks();
 
 		});
 
@@ -292,65 +294,67 @@ $(document).ready(function(){
 
 					//click top open events button
 					$(document).on('click', '#top_open_button', function(){
+						$('div').removeClass('side-bar-item-active');
 						$(this).addClass('side-bar-item-active');
-						$('#big_bets_button').removeClass('side-bar-item-active');
-						$('#stats_button').removeClass('side-bar-item-active');
-						$('#links_button').removeClass('side-bar-item-active');
 
 						$('#big_bets_div').hide();
 						$('#stats_div').hide();
+						$('#picks_div').hide();
 						$('#links_div').hide();
 						$('#top_open_div').show();
 						
-
 					});
 
 					//click big bets button
 					$(document).on('click', '#big_bets_button', function(){
+						$('div').removeClass('side-bar-item-active');
 						$(this).addClass('side-bar-item-active');
-						$('#top_open_button').removeClass('side-bar-item-active');
-						$('#stats_button').removeClass('side-bar-item-active');
-						$('#links_button').removeClass('side-bar-item-active');
 
 						$('#top_open_div').hide();
 						$('#stats_div').hide();
+						$('#picks_div').hide();
 						$('#links_div').hide();
 						$('#big_bets_div').show();
 						
-						
-
 					});
 
 					//click stats button
 					$(document).on('click', '#stats_button', function(){
+						$('div').removeClass('side-bar-item-active');
 						$(this).addClass('side-bar-item-active');
-						$('#top_open_button').removeClass('side-bar-item-active');
-						$('#big_bets_button').removeClass('side-bar-item-active');
-						$('#links_button').removeClass('side-bar-item-active');
 						
 						$('#top_open_div').hide();
 						$('#big_bets_div').hide();
+						$('#picks_div').hide();
 						$('#links_div').hide();
 						$('#stats_div').show();
 						
-						
-
 					});
 
-					//click links button
-					$(document).on('click', '#links_button', function(){
+					//click picks button
+					$(document).on('click', '#picks_button', function(){
+						$('div').removeClass('side-bar-item-active');
 						$(this).addClass('side-bar-item-active');
-						$('#top_open_button').removeClass('side-bar-item-active');
-						$('#big_bets_button').removeClass('side-bar-item-active');
-						$('#stats_button').removeClass('side-bar-item-active');
 						
 						$('#top_open_div').hide();
 						$('#big_bets_div').hide();
 						$('#stats_div').hide();
+						$('#links_div').hide();
+						$('#picks_div').show();
+					});
+
+					//click links button
+					$(document).on('click', '#links_button', function(){
+						$('div').removeClass('side-bar-item-active');
+						$(this).addClass('side-bar-item-active');
+					
+						
+						$('#top_open_div').hide();
+						$('#big_bets_div').hide();
+						$('#stats_div').hide();
+						$('#picks_div').hide();
 						$('#links_div').show();
 						
-						
-
 					});
 
 					//click to change chart and table data to single bets
@@ -378,7 +382,6 @@ $(document).ready(function(){
 				});	
 			});
 		});	
-
 	}
 
 	//run function to load page
@@ -581,6 +584,32 @@ $(document).ready(function(){
 		$('#total_usd').html('$'+Number( eval(total_bets*current_wgr_price) ).toLocaleString('en',{ maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD' );
 		$('#supply_placed').html(Number(total_changes).toLocaleString('en', {maximumFractionDigits: 0}) );
 	}
+
+	//add pick to table
+	function add_picks(){
+		var picks_url = " https://script.google.com/macros/s/AKfycbwR8r3fyIyf4XPEe2KtZabyZ0GgBFs8Br4aknT0MECNZmZmFYvV2OLMaqIN7WHSD88PBA/exec";
+
+		$.get(picks_url, function(data){
+			var picks = JSON.parse(data);
+
+			$.each(picks, function(k,v){
+
+				$('#UFC_bets_info').append('<tr>\
+					<td>'+eval(k+1)+'</td>\
+					<td><a href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
+					<td>'+v.date.split(".")[0]+'</td>\
+					<td>'+v.home+'</td>\
+					<td>'+v.away+'</td>\
+					<td class="table-pick">'+v.pick+'</td>\
+					<td class="table_'+ v.confidence.split(' ')[0]+'">'+v.confidence+'</td>\
+				</tr>');
+
+			});
+
+		})
+	}
+
+	
 
 	//donate button copy
 	function donate_copy(){

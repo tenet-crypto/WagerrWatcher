@@ -52,6 +52,7 @@
 						<div id="top_open_button" class="side-bar-item side-bar-item-active">Top Open Events</div>
 						<div id="big_bets_button" class="side-bar-item">Big Bets</div>
 						<div id="stats_button" class="side-bar-item">Betting Volume/Stats</div>
+						<div id="picks_button" class="side-bar-item">UFC Picks</div>
 						<div id="links_button" class="side-bar-item">Links</div>
 					</div>
 				</div>
@@ -263,6 +264,70 @@
 						</div>
 					</div>
 
+					<!-- UFC Picks -->
+					<div id="picks_div" class="stats-container">
+						<div id="Ufc_table_append" class="ufc-table">
+							<div>
+								<div class="top-open-header">UFC Totals</div>
+							</div>
+							
+							<div class="top-open-total">
+								<div class="open-total-header">Bet Totals: </div>
+								<div class="open-total-item">
+									<div>Total Correct: </div> 
+									<div class="open-span">
+										<span id="UFC_correct">0</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Total In-correct: </div> 
+									<div class="open-span">
+										<span id="UFC_incorrect">0</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Total Picks: </div> 
+									<div class="open-span">
+										<span id="UFC_total">0</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>% Accurate</div>
+									<div class="open-span">
+										<span id="UFC_accurate">0%</span>
+									</div>
+								</div>
+							</div>
+							<div id="UFC_picks_table_container" class="top-open-list-container">
+								<div class="open-total-header">UFC Picks</div>
+								<div class="Ufc_table_note">**The picks are determined using machine learning (MLP, Decision Trees) using python and <a target="_blank" href="https://scikit-learn.org/stable/">scikit-learn</a>.  Data is pulled directly from <a target="_blank" href="http://ufcstats.com/statistics/events/completed">UFC Stats</a>**</div>
+								<div class="Ufc_table_confidence">
+									<div>Very Confident: 75%-90%</div>
+									<div>Confident: 50%-75%</div>
+									<div>Not Confident: 0%-50%</div>
+									
+								</div>
+								
+								<div>
+									<table class="table table-striped">
+										<thead>
+											<th>No.</th>
+											<th>Event ID</th>
+											<th>Date</th>
+											<th>Home</th>
+											<th>Away</th>
+											<th>Pick</th>
+											<th>Confidence</th>
+										</thead>
+										<tbody id="UFC_bets_info">
+	
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<!-- Links -->
 					<div id="links_div" class="top-open-container">
 						<div class="top-open-header">Links</div>
@@ -280,8 +345,6 @@
 								
 							</ul>
 						</div>
-						
-						
 					</div>
 				</div>
 			</div>
