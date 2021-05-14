@@ -601,6 +601,7 @@ $(document).ready(function(){
 					<td>'+v.home+'</td>\
 					<td>'+v.away+'</td>\
 					<td class="table-pick">'+v.pick+'</td>\
+					<td class="table-pick">'+v.how+'</td>\
 					<td class="table_'+ v.confidence.split(' ')[0]+'">'+v.confidence+'</td>\
 				</tr>');
 
