@@ -154,46 +154,6 @@ $(document).ready(function(){
 				});
 
 
-				//Append big bets
-				$.each(bets_action_combined, function(k,v){
-					var bet = Number(v.betValue.toFixed(0)).toLocaleString('en');
-					var bet_usd = Number(eval(v.betValue*current_wgr_price)).toFixed(2);;
-					var bet_usd = Number(bet_usd).toLocaleString('en', {minimumFractionDigits: 2});
-					var time = new Date(v.createdAt);
-					var new_time = time.toString().substr(4).split(' G')[0];
-			
-					//append bigbets
-					$('#big_bets_info').append('\
-						<tr>\
-							<td>'+eval(k+1)+'</td>\
-							<td><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
-							<td>'+v.betChoose+'</td>\
-							<td>'+new_time+'</td>\
-							<td>'+bet+' WGR</td>\
-							<td>$'+bet_usd+'</td>\
-						</tr>\
-					');
-
-
-				});
-
-				//big bets array length
-				$('#big_bet_placed').html(bets_action.length+" (Actual: "+bets_action_combined.length +")");
-
-
-				//add total wgr bets
-				$('#open_bet_wgr, #big_bet_wgr').html(Number(open_total).toLocaleString('en', {maximumFractionDigits: 0}) + " WGR");
-
-				//add total usd bets using current price!
-				var open_total_usd_calc = eval(open_total*current_wgr_price);
-				$('#open_bet_usd, #big_bet_usd').html("$"+ Number(open_total_usd_calc).toLocaleString('en', {minimumFractionDigits: 2 ,maximumFractionDigits: 2}));
-
-
-				/*//add total usd bets (Using bet action array info so bet value is whatever the wgr price was when bet was placed)
-				var open_total_usd = open_total_usd.toFixed(2);
-				$('#open_bet_usd').html("$"+ Number(open_total_usd).toLocaleString('en'));*/
-
-
 				//add ids with no bets
 				$.each(open_events, function(k,v){
 					var result = add_id(v);
@@ -269,7 +229,7 @@ $(document).ready(function(){
 							return (kk);	
 						}
 					
-					//append each to table
+					//append each Open Event to table
 					$.each(pending_bets_sorted, function(k,v){
 						
 						var bet = Number(v.info[0].bet.toFixed(0)).toLocaleString('en');
@@ -291,6 +251,88 @@ $(document).ready(function(){
 							</tr>\
 						');
 					});
+
+
+					//add team name to Big Bets before append
+					$.each(bets_action_combined, function(k,v){
+						if(v.betChoose.includes('Home')){
+							var home_team = team_add_big_bets(v.eventId,'home');
+							bets_action_combined[k]['team'] = home_team;
+						
+						}else if(v.betChoose.includes('Away')){
+							var away_team = team_add_big_bets(v.eventId,'away');
+							bets_action_combined[k]['team'] = away_team;
+						}else if(v.betChoose.includes('Totals')){
+							var vs_team = team_add_big_bets(v.eventId,'totals');
+							bets_action_combined[k]['team'] = vs_team;
+
+						}
+
+					});
+
+					//helper to get team name for big bets
+					function team_add_big_bets(eventId, betChoose){
+						var team_name = null;
+
+						$.each(pending_bets_sorted, function(k,v){
+							if(v.event_id == eventId){
+								if(betChoose == 'home'){
+									team_name = v.info[0].home;
+								}else if(betChoose == 'away'){
+									team_name = v.info[0].away;
+								}else if(betChoose == 'totals'){
+									var home = v.info[0].home;
+									var away = v.info[0].away;
+									team_name = home + ' vs. ' + away;
+								}
+							}
+						});
+						return(team_name);
+
+					}
+
+					//Append to big bets
+					$.each(bets_action_combined, function(k,v){
+						var bet = Number(v.betValue.toFixed(0)).toLocaleString('en');
+						var bet_usd = Number(eval(v.betValue*current_wgr_price)).toFixed(2);;
+						var bet_usd = Number(bet_usd).toLocaleString('en', {minimumFractionDigits: 2});
+						var time = new Date(v.createdAt);
+						var new_time = time.toString().substr(4).split(' G')[0];
+					
+						//append bigbets
+						$('#big_bets_info').append('\
+							<tr>\
+								<td>'+eval(k+1)+'</td>\
+								<td><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
+								<td>'+v.betChoose+'</td>\
+								<td>'+v.team+'</td>\
+								<td>'+new_time+'</td>\
+								<td>'+bet+' WGR</td>\
+								<td>$'+bet_usd+'</td>\
+							</tr>\
+						');
+
+					});
+
+					//big bets array length
+					$('#big_bet_placed').html(bets_action.length+" (Actual: "+bets_action_combined.length +")");
+
+					//add total wgr bets
+					$('#open_bet_wgr, #big_bet_wgr').html(Number(open_total).toLocaleString('en', {maximumFractionDigits: 0}) + " WGR");
+
+					//add total usd bets using current price!
+					var open_total_usd_calc = eval(open_total*current_wgr_price);
+					$('#open_bet_usd, #big_bet_usd').html("$"+ Number(open_total_usd_calc).toLocaleString('en', {minimumFractionDigits: 2 ,maximumFractionDigits: 2}));
+
+
+					/*//add total usd bets (Using bet action array info so bet value is whatever the wgr price was when bet was placed)
+					var open_total_usd = open_total_usd.toFixed(2);
+					$('#open_bet_usd').html("$"+ Number(open_total_usd).toLocaleString('en'));*/
+
+
+
+					//Buttons Click
+
 
 					//click top open events button
 					$(document).on('click', '#top_open_button', function(){
