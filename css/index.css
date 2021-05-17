@@ -176,6 +176,20 @@ body{
 	margin: 0 1rem 1rem 1rem;
 
 }
+.table-date-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	
+
+}
+.date-picker{
+	margin: 1rem 1rem 1rem 0;
+	font-weight: bold;
+}
+.date-picker > label{
+	width: 5rem;
+}
 .open-total-header{
 	font-size: 1.25rem;
 	font-weight: bold;
