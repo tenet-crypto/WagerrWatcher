@@ -262,7 +262,7 @@ $(document).ready(function(){
 						}else if(v.betChoose.includes('Away')){
 							var away_team = team_add_big_bets(v.eventId,'away');
 							bets_action_combined[k]['team'] = away_team;
-						}else if(v.betChoose.includes('Totals')){
+						}else if(v.betChoose.includes('Totals') || v.betChoose.includes('Draw')){
 							var vs_team = team_add_big_bets(v.eventId,'totals');
 							bets_action_combined[k]['team'] = vs_team;
 
