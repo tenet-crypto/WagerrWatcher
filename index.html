@@ -197,15 +197,15 @@
 									</div>
 								</div>
 								<div class="open-total-item">
-									<div>Total Bets (USD) <br> (Current WGR price): </div>
-									<div class="open-span">
-										<span id="total_usd">Loading...</span>
-									</div>
-								</div>
-								<div class="open-total-item">
 									<div>Total Supply Change: </div>
 									<div class="open-span">
 										<span id="supply_placed">Loading...</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>Total Events Completed: </div>
+									<div class="open-span">
+										<span id="events_completed">Loading...</span>
 									</div>
 								</div>
 							</div>
@@ -219,6 +219,7 @@
 										<thead>
 											<th>No.</th>
 											<th>Date</th>
+											<th># of Completed Events</th>
 											<th>Single Bets</th>
 											<th>Single Bets Payout</th>
 											<th>Single Bets Supply Change</th>
@@ -229,6 +230,7 @@
 										<tfoot>
 											<tr class="table-foot-bold">
 												<th colspan="2">Total</th>
+												<td id="table_total_single_events"></td>
 												<td id="table_total_single"></td>
 												<td id="table_total_single_payout"></td>
 												<td id="table_total_single_change"></td>
