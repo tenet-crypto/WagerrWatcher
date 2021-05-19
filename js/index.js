@@ -650,6 +650,7 @@ $(document).ready(function(){
 
 	//add totals to table
 	function update_totals_table(total){
+
 		var total_bets = 0;
 		var total_payouts = 0;
 		var total_changes = 0;
@@ -663,6 +664,7 @@ $(document).ready(function(){
 			
 		});
 		$('#total_placed').html(Number(total_bets).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR<br>' + '($'+Number( eval(total_bets*current_wgr_price) ).toLocaleString('en',{ maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
+		$('#total_payout').html(Number(total_payouts).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR<br>' + '($'+Number( eval(total_payouts*current_wgr_price) ).toLocaleString('en',{ maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
 		$('#events_completed').html(total_events);
 		if(total_changes > 0){
 			$('#supply_placed').html('+ '+Number(total_changes).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR<br>($'+ Number(eval(total_changes*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2}) + ' USD)');
