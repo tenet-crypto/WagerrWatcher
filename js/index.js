@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	console.log('his');
 	//hide sidebar tabs
 	$('#big_bets_div').hide();
 	$('#stats_div').hide();
@@ -597,14 +596,18 @@ $(document).ready(function(){
 	}
 	//make charts and call to make table
 	function make_chart_mint(data_in, chart_id){
-		var data_total = [];
+		var mint_total = [];
+		var bet_total = [];
 		$.each(data_in, function(k,v){
 			var date = new Date(v.date);
 			var year = date.getFullYear();
 			var month = eval(date.getMonth()+1);
 			var day = date.getDate();
 
-			data_total.push( {x: moment(v.date), y: v.mint} );
+			var bet = eval(v.single + v.parlay);
+
+			mint_total.push( {x: moment(v.date), y: v.mint} );
+			bet_total.push( {x: moment(v.date), y: bet} );
 			
 		});
 
@@ -613,11 +616,17 @@ $(document).ready(function(){
 			type: 'bar',
 			data: {
 				datasets: [{
+					label: " Total WGR Bet",
+					data: bet_total,
+					backgroundColor: [ 'red']
+
+				},
+				{
 					label: " Total WGR Mint",
-					data: data_total,
+					data: mint_total,
 					backgroundColor: [ 'green']
 
-				}
+				},
 				],
 				
 
@@ -714,6 +723,7 @@ $(document).ready(function(){
 	var totals_bets = [];
 	function make_stats_table(data, table_id){
 
+		//if tableid is not mint
 		if(table_id != 'mint'){
 
 			var single_sum = 0;
@@ -791,6 +801,8 @@ $(document).ready(function(){
 		}else{
 
 			var mint_sum = 0;
+			var bet_sum = 0
+			var mint_bet_change = 0;
 			$.each(data, function(k,v){
 				//change date format
 				var date= moment(v.date).format('MMM DD, YYYY');
@@ -798,19 +810,32 @@ $(document).ready(function(){
 				//add sums
 				mint_sum += Number(v.mint.toFixed(0));
 
+				// sum single and parlay bets
+				var total_bet = eval( Number(v.single.toFixed(0)) + Number(v.parlay.toFixed(0)) );
+				bet_sum += total_bet;
+
+				//sum total change
+				var total_change = eval( Number(v.mint.toFixed(0)) - Number(total_bet.toFixed(0)) );
+				mint_bet_change += total_change;
+
 				//append to stats table
 				$('#'+table_id+'_info').append('\
 					<tr>\
 						<td>'+eval(k+1)+'</td>\
 						<td>'+date+'</td>\
+						<td>'+Number(total_bet.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(total_bet*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
 						<td>'+Number(v.mint.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.mint*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
+						<td>'+Number(total_change.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(total_change*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
 					</tr>\
 				');
 			});
 
 			//append tables totals
-			$('#table_total_'+table_id).html(Number(mint_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(mint_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');
-			
+			$('#table_total_'+table_id).html(Number(bet_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(bet_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');
+			$('#table_total_'+table_id+'_bet').html(Number(mint_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(mint_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');			
+			$('#table_total_'+table_id+'_change').html(Number(mint_bet_change).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(mint_bet_change*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');
+
+
 			$('#'+table_id+'_date_picker_append').append('<div class="date-picker">\
 											<label for="'+table_id+'_start_date">Date Start: </label>\
 											<input class="date-input" id="'+table_id+'_start_date" type="date" name="start" value="2021-01-01">\
@@ -829,8 +854,6 @@ $(document).ready(function(){
 			update_totals_table(totals_bets);
 		}
 
-		
-		
 	}
 
 	//add totals to table
@@ -857,9 +880,6 @@ $(document).ready(function(){
 		});
 
 		var mint_change = eval(mint_sum - total_bets);
-
-		console.log(total_bets);
-		console.log(mint_change);
 
 		$('#total_placed').html(Number(total_bets).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR<br>' + '($'+Number( eval(total_bets*current_wgr_price) ).toLocaleString('en',{ maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
 		$('#total_payout').html(Number(total_payouts).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR<br>' + '($'+Number( eval(total_payouts*current_wgr_price) ).toLocaleString('en',{ maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
@@ -917,8 +937,14 @@ $(document).ready(function(){
 			var usd_payout = 0;
 			var wgr_events = 0;
 
+
+			var wgr_mint_total = 0;
+			var usd_mint_total = 0;
 			var wgr_mint = 0;
 			var usd_mint = 0;
+			var wgr_mint_change = 0;
+			var usd_mint_change = 0;
+
 			//Loop each row and find date and totals
 			if(table != 'mint'){
 				$('#'+table+'_bets_info > tr').each(function(k,v){
@@ -950,16 +976,13 @@ $(document).ready(function(){
 						var usd_row_payout = $(this).children('td').eq(eval(row_init + 1)).html().split(' WGR')[1].split(' USD')[0].split('$').pop().replaceAll(',', '');
 						usd_payout += Number(usd_row_payout);
 
-						
-
-
 					}
 				});
 
 				//append new totals to table
-				$('#table_total_'+table).html(wgr_placed.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_placed.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
-				$('#table_total_'+table+'_payout').html(wgr_payout.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_payout.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
-				$('#table_total_'+table+'_change').html(eval(wgr_payout - wgr_placed).toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + eval(usd_payout - usd_placed).toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
+				$('#table_total_'+table).html(wgr_placed.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_placed.toLocaleString('en', {maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
+				$('#table_total_'+table+'_payout').html(wgr_payout.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_payout.toLocaleString('en', {maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
+				$('#table_total_'+table+'_change').html(eval(wgr_payout - wgr_placed).toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + eval(usd_payout - usd_placed).toLocaleString('en', {maximumFractionDigits: 2, minimumFractionDigits: 2}) + ' USD)' );
 
 				if(table == 'single'){
 					$('#table_total_'+table+'_events').html(wgr_events.toLocaleString('en'));
@@ -978,16 +1001,28 @@ $(document).ready(function(){
 						$(this).show();
 
 						//get wager sinlge bets placed data
-						var wgr_mint_row = $(this).children('td').eq(2).html().split(' WGR')[0].replaceAll(',', '');
+						var wgr_total_row = $(this).children('td').eq(2).html().split(' WGR')[0].replaceAll(',', '');
+						wgr_mint_total += Number(wgr_total_row);
+						var usd_total_row = $(this).children('td').eq(2).html().split(' WGR')[1].split(' USD')[0].split('$').pop().replaceAll(',', '');
+						usd_mint_total += Number(usd_total_row);
+
+						var wgr_mint_row = $(this).children('td').eq(3).html().split(' WGR')[0].replaceAll(',', '');
 						wgr_mint += Number(wgr_mint_row);
-						var usd_mint_row = $(this).children('td').eq(2).html().split(' WGR')[1].split(' USD')[0].split('$').pop().replaceAll(',', '');
+						var usd_mint_row = $(this).children('td').eq(3).html().split(' WGR')[1].split(' USD')[0].split('$').pop().replaceAll(',', '');
 						usd_mint += Number(usd_mint_row);
+
+						var wgr_change_row = $(this).children('td').eq(4).html().split(' WGR')[0].replaceAll(',', '');
+						wgr_mint_change += Number(wgr_change_row);
+						var usd_change_row = $(this).children('td').eq(4).html().split(' WGR')[1].split(' USD')[0].split('$').pop().replaceAll(',', '');
+						usd_mint_change += Number(usd_change_row);
 
 					}
 				});
 
 				//append new totals to table
+				$('#table_total_'+table+'_bet').html(wgr_mint_total.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint_total.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
 				$('#table_total_'+table).html(wgr_mint.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
+				$('#table_total_'+table+'_change').html(wgr_mint_change.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint_change.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
 
 			}
 			

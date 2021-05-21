@@ -159,7 +159,7 @@
 							  <input type="radio" class="btn-check" name="btnradio" id="parlay" autocomplete="off">
 							  <label class="btn btn-outline-primary btn-wgr" for="parlay">Parlay Bets</label>
 							  <input type="radio" class="btn-check" name="btnradio" id="totalmint" autocomplete="off">
-							  <label class="btn btn-outline-primary btn-wgr" for="totalmint">Total Mint</label>
+							  <label class="btn btn-outline-primary btn-wgr" for="totalmint">Totals</label>
 							</div>
 						</div>
 						<div class="stats-chart">
@@ -176,7 +176,8 @@
 						<div id="stats_table_append" class="stats-table">
 							<div>
 								<div class="top-open-header">Bet Totals (Jan 1, 2021 - Current)</div>
-								<div class="update-notice">**Updated between 12AM-1AM CST (GMT-6) Daily**</div>
+								<div class="update-notice">*Updated between 12AM-1AM CST (GMT-6) Daily*</div>
+								<div class="update-notice">**This includes block rewards, oracle, masternode, and developer fee's**</div>
 							</div>
 							
 							<div class="top-open-total">
@@ -206,7 +207,7 @@
 									</div>
 								</div>
 								<div class="open-total-item">
-									<div>Total Mint: </div> 
+									<div>**Total Mint: </div> 
 									<div class="open-span">
 										<span id="total_payout_mint">Loading...</span>
 									</div>
@@ -287,7 +288,7 @@
 							</div>
 
 							<div id="mint_table_container" class="top-open-list-container">
-								<div class="open-total-header">Bet Mint (Daily)</div>
+								<div class="open-total-header">Totals(Daily)</div>
 								<div id="mint_date_picker_append" class="table-date-container">
 									
 								</div>
@@ -296,7 +297,9 @@
 										<thead>
 											<th>No.</th>
 											<th>Date</th>
-											<th>Bet Mint</th>
+											<th>Total Bet</th>
+											<th>Total Mint</th>
+											<th>Supply Change</th>
 											
 										</thead>
 										<tbody id="mint_info">
@@ -305,7 +308,9 @@
 										<tfoot>
 											<tr class="table-foot-bold">
 												<th colspan="2">Total</th>
+												<td id="table_total_mint_bet"></td>
 												<td id="table_total_mint"></td>
+												<td id="table_total_mint_change"></td>
 												
 											</tr>
 											
