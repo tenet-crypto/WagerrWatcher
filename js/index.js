@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 	//hide sidebar tabs
 	$('#big_bets_div').hide();
 	$('#stats_div').hide();
@@ -831,8 +832,8 @@ $(document).ready(function(){
 			});
 
 			//append tables totals
-			$('#table_total_'+table_id).html(Number(bet_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(bet_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');
-			$('#table_total_'+table_id+'_bet').html(Number(mint_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(mint_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');			
+			$('#table_total_'+table_id+'_bet').html(Number(bet_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(bet_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');
+			$('#table_total_'+table_id).html(Number(mint_sum).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(mint_sum*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');			
 			$('#table_total_'+table_id+'_change').html(Number(mint_bet_change).toLocaleString('en', {maximumFractionDigits: 0}) + ' WGR <br>($'+ Number(eval(mint_bet_change*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits:2} ) + ' USD)');
 
 
@@ -1019,8 +1020,6 @@ $(document).ready(function(){
 					}
 				});
 
-				console.log(wgr_mint_total);
-				console.log(wgr_mint);
 				//append new totals to table
 				$('#table_total_'+table+'_bet').html(wgr_mint_total.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint_total.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
 				$('#table_total_'+table).html(wgr_mint.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
