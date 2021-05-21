@@ -1019,6 +1019,8 @@ $(document).ready(function(){
 					}
 				});
 
+				console.log(wgr_mint_total);
+				console.log(wgr_mint);
 				//append new totals to table
 				$('#table_total_'+table+'_bet').html(wgr_mint_total.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint_total.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
 				$('#table_total_'+table).html(wgr_mint.toLocaleString('en', {maximumFractionDigits: 0}) + " WGR<br>($" + usd_mint.toLocaleString('en', {maximumFractionDigits: 2}) + ' USD)' );
