@@ -158,11 +158,14 @@
 
 							  <input type="radio" class="btn-check" name="btnradio" id="parlay" autocomplete="off">
 							  <label class="btn btn-outline-primary btn-wgr" for="parlay">Parlay Bets</label>
+							  <input type="radio" class="btn-check" name="btnradio" id="totalmint" autocomplete="off">
+							  <label class="btn btn-outline-primary btn-wgr" for="totalmint">Totals</label>
 							</div>
 						</div>
 						<div class="stats-chart">
 							<canvas id="chart_single"></canvas>
 							<canvas id="chart_parlay"></canvas>
+							<canvas id="chart_mint"></canvas>
 						</div>
 						<div class="stats-buttons">
 							<button class="btn btn-primary" id="reset_button" >Reset zoom</button>
@@ -173,7 +176,8 @@
 						<div id="stats_table_append" class="stats-table">
 							<div>
 								<div class="top-open-header">Bet Totals (Jan 1, 2021 - Current)</div>
-								<div class="update-notice">**Updated between 12AM-1AM CST (GMT-6) Daily**</div>
+								<div class="update-notice">*Updated between 12AM-1AM CST (GMT-6) Daily*</div>
+								<div class="update-notice">**This includes bet payouts, block rewards, oracle, masternode, and developer fee's**</div>
 							</div>
 							
 							<div class="top-open-total">
@@ -197,9 +201,15 @@
 									</div>
 								</div>
 								<div class="open-total-item">
-									<div>Total Payout: </div> 
+									<div>Total Payout (Bets only): </div> 
 									<div class="open-span">
 										<span id="total_payout">Loading...</span>
+									</div>
+								</div>
+								<div class="open-total-item">
+									<div>**Total Mint: </div> 
+									<div class="open-span">
+										<span id="total_payout_mint">Loading...</span>
 									</div>
 								</div>
 								<div class="open-total-item">
@@ -227,6 +237,7 @@
 											<th>Date</th>
 											<th># of Completed Events</th>
 											<th>Single Bets</th>
+											<th># of Single Bets</th>
 											<th>Single Bets Payout</th>
 											<th>Single Bets Supply Change</th>
 										</thead>
@@ -238,6 +249,7 @@
 												<th colspan="2">Total</th>
 												<td id="table_total_single_events"></td>
 												<td id="table_total_single"></td>
+												<td id="table_total_single_count"></td>
 												<td id="table_total_single_payout"></td>
 												<td id="table_total_single_change"></td>
 											</tr>
@@ -258,6 +270,7 @@
 											<th>No.</th>
 											<th>Date</th>
 											<th>Parlay Bets</th>
+											<th># of Parlay Bets</th>
 											<th>Parlay Bets Payout</th>
 											<th>Parlay Bets Supply Change</th>
 										</thead>
@@ -268,8 +281,43 @@
 											<tr class="table-foot-bold">
 												<th colspan="2">Total</th>
 												<td id="table_total_parlay"></td>
+												<td id="table_total_parlay_count"></td>
 												<td id="table_total_parlay_payout"></td>
 												<td id="table_total_parlay_change"></td>
+											</tr>
+											
+										</tfoot>
+									</table>
+								</div>
+							</div>
+
+							<div id="mint_table_container" class="top-open-list-container">
+								<div class="open-total-header">Totals(Daily)</div>
+								<div id="mint_date_picker_append" class="table-date-container">
+									
+								</div>
+								<div>
+									<table class="table table-striped">
+										<thead>
+											<th>No.</th>
+											<th>Date</th>
+											<th>Total Bet</th>
+											<th>Total Mint</th>
+											<th>Supply Change</th>
+											<th>Total # of Bets</th>
+											
+										</thead>
+										<tbody id="mint_info">
+											
+										</tbody>
+										<tfoot>
+											<tr class="table-foot-bold">
+												<th colspan="2">Total</th>
+												<td id="table_total_mint_bet"></td>
+												<td id="table_total_mint"></td>
+												<td id="table_total_mint_change"></td>
+												<td id="table_total_mint_count"></td>
+												
 											</tr>
 											
 										</tfoot>
