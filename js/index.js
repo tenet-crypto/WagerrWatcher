@@ -245,13 +245,13 @@ $(document).ready(function(){
 
 						$('#open_events_info').append('\
 							<tr>\
-								<td>'+eval(k+1)+'</td>\
-								<td><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.event_id+'">'+v.event_id+'</a></td>\
-								<td>'+league+'</td>\
-								<td>'+home+'</td>\
-								<td>'+away+'</td>\
-								<td>'+bet+' WGR</td>\
-								<td>$'+usd+'</td>\
+								<td data-label="Rank">'+eval(k+1)+'</td>\
+								<td data-label="Event ID"><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.event_id+'">'+v.event_id+'</a></td>\
+								<td data-label="League">'+league+'</td>\
+								<td data-label="Home">'+home+'</td>\
+								<td data-label="Away">'+away+'</td>\
+								<td data-label="Total Bet WGR">'+bet+' WGR</td>\
+								<td data-label="Total Bet USD">$'+usd+'</td>\
 							</tr>\
 						');
 					});
@@ -306,13 +306,13 @@ $(document).ready(function(){
 						//append bigbets
 						$('#big_bets_info').append('\
 							<tr>\
-								<td>'+eval(k+1)+'</td>\
-								<td><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
-								<td>'+v.betChoose+'</td>\
-								<td>'+v.team+'</td>\
-								<td>'+new_time+'</td>\
-								<td>'+bet+' WGR</td>\
-								<td>$'+bet_usd+'</td>\
+								<td data-label="Rank">'+eval(k+1)+'</td>\
+								<td data-label="Event ID"><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
+								<td data-label="Bet Type">'+v.betChoose+'</td>\
+								<td data-label="Team/Teams">'+v.team+'</td>\
+								<td data-label="Time">'+new_time+'</td>\
+								<td data-label="Total Bet WGR">'+bet+' WGR</td>\
+								<td data-label="Total Bet USD">$'+bet_usd+'</td>\
 							</tr>\
 						');
 
@@ -509,6 +509,7 @@ $(document).ready(function(){
 
 			},
 			options: {
+				maintainAspectRatio: false,
 				plugins: {
 			      	zoom: {
 				        zoom: {
@@ -638,6 +639,7 @@ $(document).ready(function(){
 
 			},
 			options: {
+				maintainAspectRatio: false,
 				plugins: {
 			      	zoom: {
 				        zoom: {
@@ -761,13 +763,13 @@ $(document).ready(function(){
 					//append to stats table
 					$('#'+table_id+'_bets_info').append('\
 						<tr>\
-							<td>'+eval(k+1)+'</td>\
-							<td>'+date+'</td>\
-							<td>'+v.event_count+'</td>\
-							<td>'+Number(v.wgr_total.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.wgr_total*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
-							<td>'+v.bet_count+'</td>\
-							<td>'+Number(v.wgr_payout.toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval(v.wgr_payout*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
-							<td>'+Number(eval(v.wgr_payout -  v.wgr_total).toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval((v.wgr_payout -  v.wgr_total)*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
+							<td data-label="Rank">'+eval(k+1)+'</td>\
+							<td data-label="Date">'+date+'</td>\
+							<td data-label="# of Completed Events">'+v.event_count+'</td>\
+							<td data-label="Single Bets">'+Number(v.wgr_total.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.wgr_total*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
+							<td data-label="# of Single Bets">'+v.bet_count+'</td>\
+							<td data-label="Single Bets Payout">'+Number(v.wgr_payout.toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval(v.wgr_payout*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
+							<td data-label="Single Bets Supply Change">'+Number(eval(v.wgr_payout -  v.wgr_total).toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval((v.wgr_payout -  v.wgr_total)*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
 						</tr>\
 					');
 
@@ -777,12 +779,12 @@ $(document).ready(function(){
 					//append to stats table
 					$('#'+table_id+'_bets_info').append('\
 						<tr>\
-							<td>'+eval(k+1)+'</td>\
-							<td>'+date+'</td>\
-							<td>'+Number(v.wgr_total.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.wgr_total*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
-							<td>'+v.bet_count+'</td>\
-							<td>'+Number(v.wgr_payout.toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval(v.wgr_payout*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
-							<td>'+Number(eval(v.wgr_payout -  v.wgr_total).toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval((v.wgr_payout -  v.wgr_total)*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
+							<td data-label="Rank">'+eval(k+1)+'</td>\
+							<td data-label="Date">'+date+'</td>\
+							<td data-label="Parlay Bets">'+Number(v.wgr_total.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.wgr_total*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
+							<td data-label="# of Parlay Bets">'+v.bet_count+'</td>\
+							<td data-label="Parlay Payout">'+Number(v.wgr_payout.toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval(v.wgr_payout*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
+							<td data-label="Parlay Supply Change">'+Number(eval(v.wgr_payout -  v.wgr_total).toFixed(0)).toLocaleString('en')+' WGR<br>($'+Number(eval((v.wgr_payout -  v.wgr_total)*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2})+' USD)</td>\
 						</tr>\
 					');
 				}
@@ -844,12 +846,12 @@ $(document).ready(function(){
 				//append to stats table
 				$('#'+table_id+'_info').append('\
 					<tr>\
-						<td>'+eval(k+1)+'</td>\
-						<td>'+date+'</td>\
-						<td>'+Number(total_bet.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(total_bet*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
-						<td>'+Number(v.mint.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.mint*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
-						<td>'+Number(total_change.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(total_change*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
-						<td>'+bet_count_mint+'</td>\
+						<td data-label="Rank">'+eval(k+1)+'</td>\
+						<td data-label="Date">'+date+'</td>\
+						<td data-label="Total Bet">'+Number(total_bet.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(total_bet*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
+						<td data-label="Total Mint">'+Number(v.mint.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(v.mint*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
+						<td data-label="Total Supply Change">'+Number(total_change.toFixed(0)).toLocaleString('en')+' WGR<br> ($'+Number(eval(total_change*current_wgr_price)).toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2 })+' USD)</td>\
+						<td data-label="Total # Bet Count">'+bet_count_mint+'</td>\
 					</tr>\
 				');
 			});
@@ -1076,14 +1078,14 @@ $(document).ready(function(){
 			$.each(picks, function(k,v){
 
 				$('#UFC_bets_info').append('<tr>\
-					<td>'+eval(k+1)+'</td>\
-					<td><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
-					<td>'+v.date.split(".")[0]+'</td>\
-					<td>'+v.home+'</td>\
-					<td>'+v.away+'</td>\
-					<td class="table-pick">'+v.pick+'</td>\
-					<td class="table-pick">'+v.how+'</td>\
-					<td class="table_'+ v.confidence.split(' ')[0]+'">'+v.confidence+'</td>\
+					<td data-label="Rank">'+eval(k+1)+'</td>\
+					<td data-label="Event ID"><a target="_blank" href="https://explorer.wagerr.com/#/bet/event/'+v.eventId+'">'+v.eventId+'</a></td>\
+					<td data-label="Date">'+v.date.split(".")[0]+'</td>\
+					<td data-label="Home">'+v.home+'</td>\
+					<td data-label="Away">'+v.away+'</td>\
+					<td data-label="Pick" class="table-pick">'+v.pick+'</td>\
+					<td data-label="Method" class="table-pick">'+v.how+'</td>\
+					<td data-label="confidence" class="table_'+ v.confidence.split(' ')[0]+'">'+v.confidence+'</td>\
 				</tr>');
 
 			});

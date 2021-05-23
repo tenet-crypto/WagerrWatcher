@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Wagerr Watcher</title>
+	<title>WagerrWatcher</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
@@ -49,11 +50,13 @@
 			<div class="body-container">
 				<div class="side-bar-container">
 					<div class="side-bar">
-						<div id="top_open_button" class="side-bar-item side-bar-item-active">Top Open Events</div>
-						<div id="big_bets_button" class="side-bar-item">Big Bets</div>
-						<div id="stats_button" class="side-bar-item">Betting Volume/Stats</div>
-						<div id="picks_button" class="side-bar-item">UFC Picks</div>
-						<div id="links_button" class="side-bar-item">Links</div>
+						<div class="side-bar-mobile">
+							<div id="top_open_button" class="side-bar-item side-bar-item-active">Top Open Events</div>
+							<div id="big_bets_button" class="side-bar-item">Big Bets</div>
+							<div id="stats_button" class="side-bar-item">Betting Volume/Stats</div>
+							<div id="picks_button" class="side-bar-item">UFC Picks</div>
+							<div id="links_button" class="side-bar-item">Links</div>
+						</div>
 					</div>
 				</div>
 				<div class="page-data-container">
@@ -247,11 +250,11 @@
 										<tfoot>
 											<tr class="table-foot-bold">
 												<th colspan="2">Total</th>
-												<td id="table_total_single_events"></td>
-												<td id="table_total_single"></td>
-												<td id="table_total_single_count"></td>
-												<td id="table_total_single_payout"></td>
-												<td id="table_total_single_change"></td>
+												<td data-label="# of Completed Events Total" id="table_total_single_events"></td>
+												<td data-label="Single Bets Total" id="table_total_single"></td>
+												<td data-label="# of Single Bets Total"  id="table_total_single_count"></td>
+												<td data-label="Single Bets Payout Total"  id="table_total_single_payout"></td>
+												<td data-label="Single Bets Supply Change Total"  id="table_total_single_change"></td>
 											</tr>
 											
 										</tfoot>
@@ -280,10 +283,10 @@
 										<tfoot>
 											<tr class="table-foot-bold">
 												<th colspan="2">Total</th>
-												<td id="table_total_parlay"></td>
-												<td id="table_total_parlay_count"></td>
-												<td id="table_total_parlay_payout"></td>
-												<td id="table_total_parlay_change"></td>
+												<td data-label="Parlay Bets Total" id="table_total_parlay"></td>
+												<td data-label="# of Parlay Bets Total" id="table_total_parlay_count"></td>
+												<td data-label="Parlay Bets Payout Total" id="table_total_parlay_payout"></td>
+												<td data-label="Parlay Bets Supply Change Total"  id="table_total_parlay_change"></td>
 											</tr>
 											
 										</tfoot>
@@ -313,10 +316,10 @@
 										<tfoot>
 											<tr class="table-foot-bold">
 												<th colspan="2">Total</th>
-												<td id="table_total_mint_bet"></td>
-												<td id="table_total_mint"></td>
-												<td id="table_total_mint_change"></td>
-												<td id="table_total_mint_count"></td>
+												<td data-label="Bet Total" id="table_total_mint_bet"></td>
+												<td data-label="Mint Total" id="table_total_mint"></td>
+												<td data-label="Supply Change Total" id="table_total_mint_change"></td>
+												<td data-label="# of Bets Total" id="table_total_mint_count"></td>
 												
 											</tr>
 											

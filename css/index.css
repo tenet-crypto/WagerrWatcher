@@ -39,7 +39,7 @@ body{
 	flex-wrap: wrap;
 	min-height: 5rem;
 	background-color: #ab0000;
-	min-width: 54rem;
+	min-width: 57rem;
 }
 .header-logo-c{
 	display: flex;
@@ -145,7 +145,7 @@ body{
 	flex-wrap: nowrap;
 	justify-content: center;
 	width: calc(100% - 9rem);
-	min-width: 45rem;
+	min-width: 48rem;
 }
 
 
@@ -253,6 +253,8 @@ body{
 	margin-top: 2.5rem;
 	margin-bottom: 2rem;
 	width: 75%;
+	height: 25rem;
+
 }
 .stats-buttons{
 	display: flex;
@@ -289,9 +291,10 @@ body{
 .stats-table{
 	display: flex;
 	flex-direction: column;
-	width: 75%;
+	width: 85%;
 	border: 6px solid #b40101; 
 	background-color: white;
+
 }
 
 .table-foot-bold{
@@ -333,7 +336,7 @@ body{
 .ufc-table{
 	display: flex;
 	flex-direction: column;
-	width: 85%;
+	width: 90%;
 	border: 6px solid #b40101;
 	margin-top: 2rem;
 	background-color: white;
@@ -374,4 +377,174 @@ body{
 	background-color: red!important;
 }
 
+
+
+/*Mobile*/
+@media only screen and (max-width : 600px) {
+	.body-container {
+	    display: flex;
+	    flex-direction: column;
+	    flex-wrap: nowrap;
+	    min-height: calc(100vh - 5rem);
+	}
+	.header-container {
+	    display: flex;
+	    flex-direction: column;
+	    flex-wrap: wrap;
+	    min-height: 5rem;
+	    background-color: #ab0000;
+	    min-width: 100%;
+	}
+	.header-logo-c {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    margin-bottom: 1rem;
+	}
+	.header-options-list {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    color: white;
+	    font-size: 1.15rem;
+	    font-weight: bold;
+	    margin-left: 0.5rem;
+	}
+	.side-bar {
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: center;
+	    min-height: 10rem;
+	}
+	.side-bar-mobile{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap; 
+	}
+	.side-bar-item {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    margin: 1rem 1rem 1rem 1rem;
+	    height: 2rem;
+	    opacity: 0.5;
+		border: 1px solid white;   
+	    font-weight: bold;
+	   	min-width: 9rem;
+	}
+	.page-data-container {
+	    display: flex;
+	    flex-wrap: nowrap;
+	    justify-content: center;
+	    width: calc(100% - 9rem);
+	    min-width: 100%;
+	}
+	.top-open-container {
+	    display: flex;
+	    flex-direction: column;
+	    min-width: 100%;
+	    width: 75%;
+	    margin-top: 2.5rem;
+	    border: 6px solid #b40101;
+	    background-color: white;
+	}
+	.open-total-header {
+	    
+	}
+	table,
+	  tbody,
+	  th,
+	  td,
+	  tr,
+	  tfoot {
+	    display: block	;
+
+		
+		
+	 }
+	 tbody{
+	 	margin-top: 1rem;
+	 }
+	 thead{
+	 	display: none;
+	 }
+	tbody td::before {
+	    content: attr(data-label);
+	    float: left;
+	    text-transform: uppercase;
+	    font-weight: bold;
+	}
+	table td{
+		text-align: right!important;
+	}
+
+	tfoot td::before {
+	    content: attr(data-label);
+	    float: left;
+	    text-transform: uppercase;
+	    word-break: break-word;
+	    font-weight: bold;
+	    margin-right: 2rem;
+	}
+	tfoot td{
+		text-align: right!important;
+		word-wrap: all;
+	}
+	tfoot th{
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 1.1rem;
+	}
+	.ufc-table {
+	    display: flex;
+	    flex-direction: column;
+	    min-width: 100%;
+	    border: 6px solid #b40101;
+	    margin-top: 2rem;
+	    background-color: white;
+	}
+	.Ufc_table_confidence {
+	    display: flex;
+	    flex-direction: row;
+	    width: 100%;
+	    justify-content: space-evenly;
+	    font-size: 0.85rem;
+	    font-weight: bold;
+	    margin: 1rem 0 1rem 0;
+	}
+	.Ufc_table_confidence div{
+		text-align: center;
+	}
+	.table-pick {
+	    font-weight: bold;
+	    background-color: lightgreen!important;
+	    border: none;
+	    text-align: right;
+	}
+	.table_Confident {
+	    font-weight: bold;
+	    background-color: orange!important;
+	    border: none;
+	    text-align: right;
+	}
+
+
+	.stats-chart {
+	    margin-top: 2.5rem;
+	    margin-bottom: 2rem;
+	    width: 90%;
+	    height: 20rem;
+	}
+	.stats-table {
+	    display: flex;
+	    flex-direction: column;
+	    width: 100%;
+	    border: 6px solid #b40101;
+	    background-color: white;
+	}
+
+}
 
