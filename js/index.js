@@ -237,7 +237,9 @@ $(document).ready(function(){
 					$.each(pending_bets_sorted, function(k,v){
 						
 						var bet = Number(v.info[0].bet.toFixed(0)).toLocaleString('en');
-						var usd = Number(v.info[0].usd.toFixed(0)).toLocaleString('en');	
+						/*var usd = Number(v.info[0].usd.toFixed(0)).toLocaleString('en');*/
+						//use current usd price to calcuate usd
+						var usd =Number(eval(Number(v.info[0].bet)*current_wgr_price).toFixed(0)).toLocaleString('en');
 						
 						var league = v.info[0].league;
 						var home = v.info[0].home;
