@@ -545,6 +545,12 @@ body{
 	    border: 6px solid #b40101;
 	    background-color: white;
 	}
+	.donate-input{
+		width: 95%;
+		margin-bottom: 1rem;
+	
+
+	}
 
 }
 
