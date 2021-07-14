@@ -1,4 +1,5 @@
 # WagerrWatcher
+Link: https://tenet-crypto.github.io/WagerrWatcher/
 Uses Wagerr API to view betting information and volume
 
 Top Open Volume - Total for Open events able to be bet on. USD is based on current Wager price.
